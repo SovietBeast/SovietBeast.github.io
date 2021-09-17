@@ -7,5 +7,10 @@
           <script> document.write(document.location) </script>
           <script> document.write(window.location) </script>
           <script> document.write(document.referrer) </script>
+          <script>
+               for (var i = 0; i < localStorage.length; i++){
+                    document.write(localStorage.getItem(localStorage.key(i)));
+}
+          </script>
      </body>
 </html>
