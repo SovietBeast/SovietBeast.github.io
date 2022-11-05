@@ -1,0 +1,6 @@
+[submodule "ctf-writeups/themes/terminal"]
+	path = ctf-writeups/themes/terminal
+	url = https://github.com/panr/hugo-theme-terminal
+[submodule "themes/terminal"]
+	path = themes/terminal
+	url = https://github.com/panr/hugo-theme-terminal.git
