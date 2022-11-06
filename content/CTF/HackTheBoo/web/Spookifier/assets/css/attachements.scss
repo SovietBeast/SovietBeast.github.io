@@ -1,0 +1,30 @@
+section.attachments {
+	margin: 1.5rem 0;
+	position: relative;
+	background-color: red;
+
+	label {
+		font-weight: 300;
+		margin: 0;
+	}
+
+	.attachments-files {
+		display: block;
+		font-size: 1rem;
+		margin: 0;
+
+		ul {
+			margin-top: 0;
+		}
+
+		.attachment-size {
+			display: inline-block;
+			color: var(--font-color-muted);
+		}
+	}
+
+	.new-tab {
+		padding-left: 0.1em;
+		padding-right: 0.1em;
+	}
+}

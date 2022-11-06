@@ -4,9 +4,14 @@ summary: "Server-Side Template Injection vulnerability in flask application with
 date: 2022-11-06T19:25:08+01:00
 ---
 
+{{< attachements folder="files" pattern=".*\.zip$" >}}
+
+
 # Spookifier
 
 > There's a new trend of an application that generates a spooky name for you. Users of that application later discovered that their real names were also magically changed, causing havoc in their life. Could you help bring down this application?
+
+
 
 # Information Gathering
 
