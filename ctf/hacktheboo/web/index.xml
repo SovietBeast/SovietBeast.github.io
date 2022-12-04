@@ -24,7 +24,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>web &lt;span style="color:#f92672">=&lt;/span> Blueprint(&lt;span style="color:#e6db74">&amp;#39;web&amp;#39;&lt;/span>, __name__)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@web&lt;/span>&lt;span style="color:#f92672">.&lt;/span>route(&lt;span style="color:#e6db74">&amp;#39;/&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@web.route&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;/&amp;#39;&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span>():
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> text &lt;span style="color:#f92672">=&lt;/span> request&lt;span style="color:#f92672">.&lt;/span>args&lt;span style="color:#f92672">.&lt;/span>get(&lt;span style="color:#e6db74">&amp;#39;text&amp;#39;&lt;/span>) &lt;span style="color:#75715e"># Here &amp;#34;text&amp;#34; is user input&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(text):
@@ -119,11 +119,11 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>web &lt;span style="color:#f92672">=&lt;/span> Blueprint(&lt;span style="color:#e6db74">&amp;#39;web&amp;#39;&lt;/span>, __name__)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>api &lt;span style="color:#f92672">=&lt;/span> Blueprint(&lt;span style="color:#e6db74">&amp;#39;api&amp;#39;&lt;/span>, __name__)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@web&lt;/span>&lt;span style="color:#f92672">.&lt;/span>route(&lt;span style="color:#e6db74">&amp;#39;/&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@web.route&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;/&amp;#39;&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span>():
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> render_template(&lt;span style="color:#e6db74">&amp;#39;index.html&amp;#39;&lt;/span>)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@api&lt;/span>&lt;span style="color:#f92672">.&lt;/span>route(&lt;span style="color:#e6db74">&amp;#39;/get_health&amp;#39;&lt;/span>, methods&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#39;POST&amp;#39;&lt;/span>])
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@api.route&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;/get_health&amp;#39;&lt;/span>, methods&lt;span style="color:#f92672">=&lt;/span>[&lt;span style="color:#e6db74">&amp;#39;POST&amp;#39;&lt;/span>])
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">count&lt;/span>():
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">not&lt;/span> request&lt;span style="color:#f92672">.&lt;/span>is_json:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> response(&lt;span style="color:#e6db74">&amp;#39;Invalid JSON!&amp;#39;&lt;/span>), &lt;span style="color:#ae81ff">400&lt;/span>
